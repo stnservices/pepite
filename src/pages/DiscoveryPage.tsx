@@ -108,6 +108,40 @@ export default function DiscoveryPage() {
     })
   }
 
+  const unsavedResults = results.filter((r) => !isAlreadySaved(r.placeId))
+
+  const handleSaveAll = () => {
+    unsavedResults.forEach((place) => {
+      addLead({
+        businessName: place.name,
+        category: place.category,
+        address: place.address,
+        city: place.city || city,
+        phone: place.phone,
+        website: place.website,
+        googleMapsUrl: place.googleMapsUrl,
+        googlePlaceId: place.placeId,
+        rating: place.rating,
+        reviewCount: place.reviewCount,
+        websiteQuality: place.website ? 'mediocre' : 'none',
+        priority: 3,
+        status: 'new',
+        currency: 'EUR',
+        notes: place.primaryType ? `Type: ${place.primaryType}` : '',
+        tags: [],
+      })
+    })
+    setSavedIds((prev) => {
+      const next = new Set(prev)
+      unsavedResults.forEach((r) => next.add(r.placeId))
+      return next
+    })
+    toast({
+      title: `${unsavedResults.length} leads saved`,
+      description: 'All businesses have been added to your leads.',
+    })
+  }
+
   return (
     <div className="p-6 space-y-6">
       <div>
@@ -206,9 +240,17 @@ export default function DiscoveryPage() {
       {/* Results */}
       {results.length > 0 && (
         <div>
-          <p className="text-sm text-muted-foreground mb-3">
-            {results.length} businesses found
-          </p>
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-sm text-muted-foreground">
+              {results.length} businesses found
+            </p>
+            {unsavedResults.length > 0 && (
+              <Button size="sm" onClick={handleSaveAll}>
+                <Plus className="h-4 w-4 mr-1" />
+                Save All ({unsavedResults.length})
+              </Button>
+            )}
+          </div>
           <div className="grid gap-3">
             {results.map((place) => {
               const saved = isAlreadySaved(place.placeId)
