@@ -32,7 +32,7 @@ router.post('/search', async (req, res) => {
     const body: Record<string, unknown> = {
       textQuery,
       pageSize: pageSize || 20,
-      languageCode: languageCode || 'fr',
+      languageCode: languageCode || 'ro',
     }
 
     if (locationBias) {

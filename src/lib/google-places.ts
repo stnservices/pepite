@@ -107,7 +107,7 @@ export async function searchPlaces(
   const body: Record<string, unknown> = {
     textQuery: query,
     pageSize: options?.pageSize || 20,
-    languageCode: 'fr',
+    languageCode: 'ro',
   }
 
   if (options?.locationBias) {
