@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
   ArrowLeft,
@@ -19,7 +20,29 @@ import { ActivityTimeline } from '@/components/activity/activity-timeline'
 import { ActivityForm } from '@/components/activity/activity-form'
 import { useLeadsStore } from '@/stores/leads-store'
 import { CATEGORIES, PIPELINE_STAGES } from '@/lib/constants'
+import { TemplateSelector, getDefaultTemplate } from '@/components/preview/template-selector'
+import { PreviewFrame } from '@/components/preview/preview-frame'
+import { RestaurantTemplate } from '@/components/preview/templates/restaurant'
+import { SalonTemplate } from '@/components/preview/templates/salon'
+import { MechanicTemplate } from '@/components/preview/templates/mechanic'
+import { ProfessionalTemplate } from '@/components/preview/templates/professional'
+import { RetailTemplate } from '@/components/preview/templates/retail'
+import { GenericTemplate } from '@/components/preview/templates/generic'
 import type { LeadStatus } from '@/types'
+
+const TEMPLATE_MAP: Record<string, React.ComponentType<{ businessName: string; phone?: string; address?: string; city?: string }>> = {
+  restaurant: RestaurantTemplate,
+  salon: SalonTemplate,
+  mechanic: MechanicTemplate,
+  professional: ProfessionalTemplate,
+  retail: RetailTemplate,
+  generic: GenericTemplate,
+}
+
+function PreviewTemplateRenderer({ template, ...props }: { template: string; businessName: string; phone?: string; address?: string; city?: string }) {
+  const Template = TEMPLATE_MAP[template] || GenericTemplate
+  return <Template {...props} />
+}
 
 export default function LeadDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -28,6 +51,7 @@ export default function LeadDetailPage() {
 
   const lead = getLeadById(id!)
   const activities = getActivitiesByLead(id!)
+  const [previewTemplate, setPreviewTemplate] = useState(getDefaultTemplate(lead?.category))
 
   if (!lead) {
     return (
@@ -182,14 +206,21 @@ export default function LeadDetailPage() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="preview" className="mt-4">
-          <Card className="p-8">
-            <div className="text-center text-muted-foreground">
-              <Globe className="h-12 w-12 mx-auto mb-3 opacity-50" />
-              <p className="text-lg font-medium">Website Preview</p>
-              <p className="text-sm mt-1">Preview templates will be available in a future update.</p>
-            </div>
-          </Card>
+        <TabsContent value="preview" className="mt-4 space-y-4">
+          <TemplateSelector
+            selected={previewTemplate}
+            onSelect={setPreviewTemplate}
+            suggestedCategory={lead.category}
+          />
+          <PreviewFrame url={`www.${lead.businessName.toLowerCase().replace(/\s+/g, '-')}.com`}>
+            <PreviewTemplateRenderer
+              template={previewTemplate}
+              businessName={lead.businessName}
+              phone={lead.phone}
+              address={lead.address}
+              city={lead.city}
+            />
+          </PreviewFrame>
         </TabsContent>
       </Tabs>
     </div>
