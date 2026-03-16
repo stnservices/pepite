@@ -20,6 +20,11 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(cors({ origin: 'http://localhost:3000' }))
 }
 
+// Health check (public)
+app.get('/api/health', (_req, res) => {
+  res.json({ status: 'ok' })
+})
+
 // Auth routes (public)
 app.use('/api/auth', authRoutes)
 
