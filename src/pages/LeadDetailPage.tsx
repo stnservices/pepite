@@ -7,6 +7,7 @@ import {
   Globe,
   MapPin,
   ExternalLink,
+  Trash2,
 } from 'lucide-react'
 import { format } from 'date-fns'
 import { Button } from '@/components/ui/button'
@@ -18,6 +19,7 @@ import { WebsiteQualityBadge } from '@/components/leads/website-quality-badge'
 import { LeadForm } from '@/components/leads/lead-form'
 import { ActivityTimeline } from '@/components/activity/activity-timeline'
 import { ActivityForm } from '@/components/activity/activity-form'
+import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { useLeadsStore } from '@/stores/leads-store'
 import { CATEGORIES, PIPELINE_STAGES } from '@/lib/constants'
 import { TemplateSelector, getDefaultTemplate } from '@/components/preview/template-selector'
@@ -47,7 +49,8 @@ function PreviewTemplateRenderer({ template, ...props }: { template: string; bus
 export default function LeadDetailPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const { getLeadById, updateLead, changeStatus, getActivitiesByLead } = useLeadsStore()
+  const { getLeadById, updateLead, changeStatus, getActivitiesByLead, deleteLead } = useLeadsStore()
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
 
   const lead = getLeadById(id!)
   const activities = getActivitiesByLead(id!)
@@ -142,6 +145,14 @@ export default function LeadDetailPage() {
               </Button>
             </>
           )}
+          <Button
+            size="sm"
+            variant="ghost"
+            className="text-destructive"
+            onClick={() => setDeleteDialogOpen(true)}
+          >
+            <Trash2 className="h-4 w-4" />
+          </Button>
         </div>
       </div>
 
@@ -223,6 +234,19 @@ export default function LeadDetailPage() {
           </PreviewFrame>
         </TabsContent>
       </Tabs>
+
+      <ConfirmDialog
+        open={deleteDialogOpen}
+        onOpenChange={setDeleteDialogOpen}
+        title="Delete Lead"
+        description={`Are you sure you want to delete "${lead.businessName}"? This action cannot be undone.`}
+        confirmLabel="Delete"
+        destructive
+        onConfirm={() => {
+          deleteLead(lead.id)
+          navigate('/leads')
+        }}
+      />
     </div>
   )
 }

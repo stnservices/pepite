@@ -13,6 +13,7 @@ import {
   Sun,
   Moon,
   Gem,
+  LogOut,
 } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { cn } from '@/lib/utils'
@@ -20,6 +21,7 @@ import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Separator } from '@/components/ui/separator'
 import { useSettingsStore } from '@/stores/settings-store'
+import { useAuthStore } from '@/stores/auth-store'
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -35,6 +37,7 @@ export default function AppLayout() {
   const { theme, setTheme } = useTheme()
   const location = useLocation()
   const { sidebarCollapsed, toggleSidebar } = useSettingsStore()
+  const logout = useAuthStore((s) => s.logout)
 
   return (
     <div className="flex h-screen overflow-hidden bg-background">
@@ -103,6 +106,14 @@ export default function AppLayout() {
             >
               <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => logout()}
+              className="h-8 w-8"
+            >
+              <LogOut className="h-4 w-4" />
             </Button>
             <Button
               variant="ghost"

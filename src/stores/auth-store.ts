@@ -33,6 +33,7 @@ export const useAuthStore = create<AuthState>()((set) => ({
     }
     clearTokens()
     set({ isAuthenticated: false })
+    window.location.href = '/login'
   },
 
   checkAuth: async () => {
