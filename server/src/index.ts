@@ -36,7 +36,11 @@ app.use('/api/places', authMiddleware, placesRoutes)
 if (process.env.NODE_ENV === 'production') {
   const clientDist = path.join(__dirname, '../../dist')
   app.use(express.static(clientDist))
-  app.get('*', (_req, res) => {
+  app.get('*', (req, res) => {
+    // Don't serve index.html for asset requests — let them 404 properly
+    if (req.path.startsWith('/assets/')) {
+      return res.status(404).end()
+    }
     res.sendFile(path.join(clientDist, 'index.html'))
   })
 }
