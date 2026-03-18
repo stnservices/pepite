@@ -104,7 +104,7 @@ export default function LeadsPage() {
   )
 
   return (
-    <div className="p-6 space-y-4">
+    <div className="p-4 lg:p-6 space-y-4">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Leads</h1>
@@ -141,17 +141,17 @@ export default function LeadsPage() {
         onQualityFilterChange={setQualityFilter}
       />
 
-      <div className="rounded-md border">
+      <div className="rounded-md border overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead><SortHeader label="Business" sortKeyName="businessName" /></TableHead>
-              <TableHead><SortHeader label="City" sortKeyName="city" /></TableHead>
-              <TableHead>Website</TableHead>
+              <TableHead className="hidden md:table-cell"><SortHeader label="City" sortKeyName="city" /></TableHead>
+              <TableHead className="hidden md:table-cell">Website</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead><SortHeader label="Priority" sortKeyName="priority" /></TableHead>
+              <TableHead className="hidden lg:table-cell"><SortHeader label="Priority" sortKeyName="priority" /></TableHead>
               <TableHead><SortHeader label="Price" sortKeyName="priceOffered" /></TableHead>
-              <TableHead><SortHeader label="Created" sortKeyName="createdAt" /></TableHead>
+              <TableHead className="hidden lg:table-cell"><SortHeader label="Created" sortKeyName="createdAt" /></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -176,20 +176,20 @@ export default function LeadsPage() {
                         <span className="font-medium">{lead.businessName}</span>
                       </div>
                     </TableCell>
-                    <TableCell>{lead.city}</TableCell>
-                    <TableCell>
+                    <TableCell className="hidden md:table-cell">{lead.city}</TableCell>
+                    <TableCell className="hidden md:table-cell">
                       <WebsiteQualityBadge quality={lead.websiteQuality} />
                     </TableCell>
                     <TableCell>
                       <LeadStatusBadge status={lead.status} />
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden lg:table-cell">
                       <span className="text-sm">{'★'.repeat(lead.priority)}{'☆'.repeat(5 - lead.priority)}</span>
                     </TableCell>
                     <TableCell>
                       {lead.priceOffered ? `${lead.priceOffered}€` : '—'}
                     </TableCell>
-                    <TableCell className="text-muted-foreground">
+                    <TableCell className="hidden lg:table-cell text-muted-foreground">
                       {format(new Date(lead.createdAt), 'MMM d, yyyy')}
                     </TableCell>
                   </TableRow>

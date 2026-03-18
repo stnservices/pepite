@@ -30,7 +30,7 @@ export default function PreviewPage() {
   const Template = TEMPLATE_MAP[template] || GenericTemplate
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 lg:p-6 space-y-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Website Preview</h1>
         <p className="text-sm text-muted-foreground mt-1">
@@ -38,7 +38,7 @@ export default function PreviewPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Controls */}
         <div className="space-y-4">
           <Card>
@@ -76,7 +76,7 @@ export default function PreviewPage() {
         </div>
 
         {/* Preview */}
-        <div className="col-span-2">
+        <div className="lg:col-span-2">
           <PreviewFrame url={`www.${businessName.toLowerCase().replace(/\s+/g, '-')}.com`}>
             <Template
               businessName={businessName}

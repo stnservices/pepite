@@ -74,7 +74,7 @@ export function LeadForm({ defaultValues, onSubmit, onCancel, submitLabel = 'Sav
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <FormField
             control={form.control}
             name="businessName"
@@ -114,7 +114,7 @@ export function LeadForm({ defaultValues, onSubmit, onCancel, submitLabel = 'Sav
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <FormField
             control={form.control}
             name="address"
@@ -143,7 +143,7 @@ export function LeadForm({ defaultValues, onSubmit, onCancel, submitLabel = 'Sav
           />
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <FormField
             control={form.control}
             name="phone"
@@ -185,7 +185,7 @@ export function LeadForm({ defaultValues, onSubmit, onCancel, submitLabel = 'Sav
           />
         </div>
 
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <FormField
             control={form.control}
             name="websiteQuality"

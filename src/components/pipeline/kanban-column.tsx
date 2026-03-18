@@ -19,7 +19,7 @@ export function KanbanColumn({ status, leads }: KanbanColumnProps) {
   return (
     <div
       className={cn(
-        'flex flex-col rounded-lg border bg-muted/30 min-w-[280px] w-[280px]',
+        'flex flex-col rounded-lg border bg-muted/30 min-w-[260px] w-[260px] lg:min-w-[280px] lg:w-[280px]',
         isOver && 'ring-2 ring-primary/50'
       )}
     >

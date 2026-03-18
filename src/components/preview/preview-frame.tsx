@@ -23,7 +23,7 @@ export function PreviewFrame({ url = 'www.example.com', children, className }: P
         </div>
       </div>
       {/* Content */}
-      <div className="overflow-y-auto max-h-[600px]">
+      <div className="overflow-y-auto max-h-[400px] lg:max-h-[600px]">
         {children}
       </div>
     </div>

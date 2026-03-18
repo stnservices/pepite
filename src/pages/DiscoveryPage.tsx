@@ -143,7 +143,7 @@ export default function DiscoveryPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 lg:p-6 space-y-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Discover Businesses</h1>
         <p className="text-sm text-muted-foreground mt-1">
@@ -155,7 +155,7 @@ export default function DiscoveryPage() {
       <Card className="p-4">
         <div className="flex flex-wrap gap-3">
           <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger className="w-[160px]">
+            <SelectTrigger className="w-full sm:w-[160px]">
               <SelectValue placeholder="Category" />
             </SelectTrigger>
             <SelectContent>
@@ -172,14 +172,14 @@ export default function DiscoveryPage() {
             </SelectContent>
           </Select>
           <Input
-            className="flex-1 min-w-[200px]"
+            className="w-full sm:flex-1 sm:min-w-[200px]"
             placeholder="Search query (optional refinement)..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
           />
           <Input
-            className="w-[200px]"
+            className="w-full sm:w-[200px]"
             placeholder="City..."
             value={city}
             onChange={(e) => setCity(e.target.value)}

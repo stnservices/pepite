@@ -77,7 +77,7 @@ export default function ProjectsPage() {
   )
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 lg:p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Projects</h1>
@@ -152,7 +152,7 @@ export default function ProjectsPage() {
             const CategoryIcon = lead ? CATEGORIES[lead.category]?.icon : null
             return (
               <Card key={project.id} className="p-4">
-                <div className="flex items-start justify-between">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       {CategoryIcon && <CategoryIcon className="h-4 w-4 text-muted-foreground" />}
@@ -161,7 +161,7 @@ export default function ProjectsPage() {
                         {STATUS_LABELS[project.status]}
                       </Badge>
                     </div>
-                    <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-4 mt-2 text-sm text-muted-foreground">
                       <span>Template: {project.templateUsed}</span>
                       <span>Folder: {project.folderName}/</span>
                       <span>Created: {format(new Date(project.createdAt), 'MMM d, yyyy')}</span>
@@ -183,7 +183,7 @@ export default function ProjectsPage() {
                       value={project.status}
                       onValueChange={(v) => updateProject(project.id, { status: v as typeof project.status })}
                     >
-                      <SelectTrigger className="w-[140px]">
+                      <SelectTrigger className="w-full sm:w-[140px]">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>

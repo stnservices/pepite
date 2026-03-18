@@ -38,9 +38,9 @@ export function ActivityForm({ leadId }: ActivityFormProps) {
 
   return (
     <div className="space-y-3 rounded-lg border border-border p-4">
-      <div className="flex gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row">
         <Select value={type} onValueChange={(v) => setType(v as ActivityType)}>
-          <SelectTrigger className="w-[140px]">
+          <SelectTrigger className="w-full sm:w-[140px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -54,7 +54,7 @@ export function ActivityForm({ leadId }: ActivityFormProps) {
           </SelectContent>
         </Select>
         <Select value={contactMethod} onValueChange={(v) => setContactMethod(v as ContactMethod | 'none')}>
-          <SelectTrigger className="w-[140px]">
+          <SelectTrigger className="w-full sm:w-[140px]">
             <SelectValue placeholder="Contact via..." />
           </SelectTrigger>
           <SelectContent>

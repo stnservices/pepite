@@ -84,7 +84,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="p-6 space-y-6 max-w-3xl">
+    <div className="p-4 lg:p-6 space-y-6 max-w-3xl">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Settings</h1>
         <p className="text-sm text-muted-foreground mt-1">Configure your Pepite preferences.</p>
@@ -97,7 +97,7 @@ export default function SettingsPage() {
           <CardDescription>Default values for discovery and lead management.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div className="space-y-2">
               <Label htmlFor="city">Default City</Label>
               <Input

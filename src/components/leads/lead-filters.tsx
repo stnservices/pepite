@@ -33,7 +33,7 @@ export function LeadFilters({
 }: LeadFiltersProps) {
   return (
     <div className="flex flex-wrap items-center gap-3">
-      <div className="relative flex-1 min-w-[200px]">
+      <div className="relative w-full sm:flex-1 sm:min-w-[200px]">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <Input
           placeholder="Search leads..."
@@ -43,7 +43,7 @@ export function LeadFilters({
         />
       </div>
       <Select value={statusFilter} onValueChange={(v) => onStatusFilterChange(v as LeadStatus | 'all')}>
-        <SelectTrigger className="w-[160px]">
+        <SelectTrigger className="w-full sm:w-[160px]">
           <SelectValue placeholder="Status" />
         </SelectTrigger>
         <SelectContent>
@@ -56,7 +56,7 @@ export function LeadFilters({
         </SelectContent>
       </Select>
       <Select value={categoryFilter} onValueChange={(v) => onCategoryFilterChange(v as BusinessCategory | 'all')}>
-        <SelectTrigger className="w-[160px]">
+        <SelectTrigger className="w-full sm:w-[160px]">
           <SelectValue placeholder="Category" />
         </SelectTrigger>
         <SelectContent>
@@ -69,7 +69,7 @@ export function LeadFilters({
         </SelectContent>
       </Select>
       <Select value={qualityFilter} onValueChange={(v) => onQualityFilterChange(v as WebsiteQuality | 'all')}>
-        <SelectTrigger className="w-[160px]">
+        <SelectTrigger className="w-full sm:w-[160px]">
           <SelectValue placeholder="Website" />
         </SelectTrigger>
         <SelectContent>

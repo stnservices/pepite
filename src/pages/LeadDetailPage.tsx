@@ -75,9 +75,9 @@ export default function LeadDetailPage() {
   const currentIndex = statusFlow.indexOf(lead.status)
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 lg:p-6 space-y-6">
       {/* Header */}
-      <div className="flex items-start justify-between">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="mb-2">
             <ArrowLeft className="h-4 w-4 mr-1" />
@@ -88,7 +88,7 @@ export default function LeadDetailPage() {
             <h1 className="text-2xl font-bold tracking-tight">{lead.businessName}</h1>
             <LeadStatusBadge status={lead.status} />
           </div>
-          <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-sm text-muted-foreground">
             <span className="flex items-center gap-1">
               <MapPin className="h-3.5 w-3.5" />
               {lead.address}, {lead.city}
@@ -116,7 +116,7 @@ export default function LeadDetailPage() {
         </div>
 
         {/* Quick status buttons */}
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {lead.status !== 'won' && lead.status !== 'lost' && (
             <>
               {currentIndex >= 0 && currentIndex < statusFlow.length - 1 && (
@@ -159,7 +159,7 @@ export default function LeadDetailPage() {
       <Separator />
 
       {/* Summary cards */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
         <Card className="p-4">
           <p className="text-xs text-muted-foreground">Website Quality</p>
           <div className="mt-1">
