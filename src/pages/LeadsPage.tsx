@@ -40,6 +40,7 @@ export default function LeadsPage() {
   const [statusFilter, setStatusFilter] = useState<LeadStatus | 'all'>('all')
   const [categoryFilter, setCategoryFilter] = useState<BusinessCategory | 'all'>('all')
   const [qualityFilter, setQualityFilter] = useState<WebsiteQuality | 'all'>('all')
+  const [cityFilter, setCityFilter] = useState<string>('all')
 
   // Sort
   const [sortKey, setSortKey] = useState<SortKey>('createdAt')
@@ -65,6 +66,9 @@ export default function LeadsPage() {
     if (categoryFilter !== 'all') {
       result = result.filter((l) => l.category === categoryFilter)
     }
+    if (cityFilter !== 'all') {
+      result = result.filter((l) => l.city === cityFilter)
+    }
     if (qualityFilter !== 'all') {
       result = result.filter((l) => l.websiteQuality === qualityFilter)
     }
@@ -77,7 +81,12 @@ export default function LeadsPage() {
     })
 
     return result
-  }, [leads, debouncedSearch, statusFilter, categoryFilter, qualityFilter, sortKey, sortDir])
+  }, [leads, debouncedSearch, statusFilter, categoryFilter, cityFilter, qualityFilter, sortKey, sortDir])
+
+  const cities = useMemo(() => {
+    const unique = [...new Set(leads.map((l) => l.city).filter(Boolean))].sort()
+    return unique
+  }, [leads])
 
   const toggleSort = (key: SortKey) => {
     if (sortKey === key) {
@@ -139,6 +148,9 @@ export default function LeadsPage() {
         onCategoryFilterChange={setCategoryFilter}
         qualityFilter={qualityFilter}
         onQualityFilterChange={setQualityFilter}
+        cityFilter={cityFilter}
+        onCityFilterChange={setCityFilter}
+        cities={cities}
       />
 
       <div className="rounded-md border overflow-x-auto">

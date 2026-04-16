@@ -24,7 +24,7 @@ import type { Lead } from '@/types'
 
 const leadSchema = z.object({
   businessName: z.string().min(1, 'Business name is required'),
-  category: z.enum(['restaurant', 'salon', 'mechanic', 'professional', 'retail', 'health', 'fitness', 'real_estate', 'construction', 'other']),
+  category: z.enum(['restaurant', 'salon', 'mechanic', 'professional', 'retail', 'health', 'fitness', 'real_estate', 'construction', 'fishing', 'hunting', 'other']),
   address: z.string().min(1, 'Address is required'),
   city: z.string().min(1, 'City is required'),
   phone: z.string().optional(),

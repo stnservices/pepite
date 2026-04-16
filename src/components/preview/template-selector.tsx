@@ -8,7 +8,7 @@ const TEMPLATES: { id: string; label: string; categories: BusinessCategory[] }[]
   { id: 'mechanic', label: 'Auto Service', categories: ['mechanic'] },
   { id: 'professional', label: 'Professional', categories: ['professional', 'health'] },
   { id: 'retail', label: 'Retail Shop', categories: ['retail'] },
-  { id: 'generic', label: 'Generic', categories: ['other', 'fitness', 'real_estate', 'construction'] },
+  { id: 'generic', label: 'Generic', categories: ['other', 'fitness', 'real_estate', 'construction', 'fishing', 'hunting'] },
 ]
 
 interface TemplateSelectorProps {

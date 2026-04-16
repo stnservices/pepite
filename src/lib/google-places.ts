@@ -82,6 +82,8 @@ const TYPE_TO_CATEGORY: Record<string, BusinessCategory> = {
   pharmacy: 'health',
   physiotherapist: 'health',
   veterinary_care: 'health',
+  sporting_goods_store: 'fishing',
+  outdoor_recreation: 'hunting',
 }
 
 function mapCategory(primaryType?: string): BusinessCategory {

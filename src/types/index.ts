@@ -8,6 +8,8 @@ export type BusinessCategory =
   | 'fitness'
   | 'real_estate'
   | 'construction'
+  | 'fishing'
+  | 'hunting'
   | 'other'
 
 export type WebsiteQuality = 'none' | 'terrible' | 'poor' | 'mediocre' | 'decent' | 'good'

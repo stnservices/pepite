@@ -19,6 +19,9 @@ interface LeadFiltersProps {
   onCategoryFilterChange: (value: BusinessCategory | 'all') => void
   qualityFilter: WebsiteQuality | 'all'
   onQualityFilterChange: (value: WebsiteQuality | 'all') => void
+  cityFilter: string
+  onCityFilterChange: (value: string) => void
+  cities: string[]
 }
 
 export function LeadFilters({
@@ -30,6 +33,9 @@ export function LeadFilters({
   onCategoryFilterChange,
   qualityFilter,
   onQualityFilterChange,
+  cityFilter,
+  onCityFilterChange,
+  cities,
 }: LeadFiltersProps) {
   return (
     <div className="flex flex-wrap items-center gap-3">
@@ -64,6 +70,19 @@ export function LeadFilters({
           {CATEGORY_OPTIONS.map((opt) => (
             <SelectItem key={opt.value} value={opt.value}>
               {opt.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      <Select value={cityFilter} onValueChange={onCityFilterChange}>
+        <SelectTrigger className="w-full sm:w-[160px]">
+          <SelectValue placeholder="City" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="all">All Cities</SelectItem>
+          {cities.map((city) => (
+            <SelectItem key={city} value={city}>
+              {city}
             </SelectItem>
           ))}
         </SelectContent>

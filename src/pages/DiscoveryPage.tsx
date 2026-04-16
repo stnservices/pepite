@@ -27,7 +27,7 @@ import {
 import { useSettingsStore } from '@/stores/settings-store'
 import { useLeadsStore } from '@/stores/leads-store'
 import { searchPlaces, type PlaceResult } from '@/lib/google-places'
-import { CATEGORIES } from '@/lib/constants'
+import { CATEGORIES, CATEGORY_OPTIONS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import { ResultsMap } from '@/components/discovery/results-map'
 import { useToast } from '@/hooks/use-toast'
@@ -160,15 +160,11 @@ export default function DiscoveryPage() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Categories</SelectItem>
-              <SelectItem value="restaurant">Restaurant</SelectItem>
-              <SelectItem value="salon">Salon / Beauty</SelectItem>
-              <SelectItem value="mechanic">Mechanic / Auto</SelectItem>
-              <SelectItem value="professional">Professional</SelectItem>
-              <SelectItem value="retail">Retail</SelectItem>
-              <SelectItem value="health">Health</SelectItem>
-              <SelectItem value="fitness">Fitness</SelectItem>
-              <SelectItem value="real_estate">Real Estate</SelectItem>
-              <SelectItem value="construction">Construction</SelectItem>
+              {CATEGORY_OPTIONS.map((opt) => (
+                <SelectItem key={opt.value} value={opt.value}>
+                  {opt.label}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
           <Input

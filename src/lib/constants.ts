@@ -8,6 +8,8 @@ import {
   Dumbbell,
   Home,
   HardHat,
+  Fish,
+  Target,
   MoreHorizontal,
   Circle,
   Send,
@@ -43,6 +45,8 @@ export const CATEGORIES: Record<BusinessCategory, { label: string; icon: LucideI
   fitness: { label: 'Fitness', icon: Dumbbell },
   real_estate: { label: 'Real Estate', icon: Home },
   construction: { label: 'Construction', icon: HardHat },
+  fishing: { label: 'Pescuit', icon: Fish },
+  hunting: { label: 'Vânătoare', icon: Target },
   other: { label: 'Other', icon: MoreHorizontal },
 }
 
